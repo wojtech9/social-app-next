@@ -11,11 +11,18 @@ export default () => {
     password: '',
   });
 
-  const registerHandler = (): void => {
+  const registerHandler = async () => {
     if (userData.nickname === '' || userData.password === '') {
       return;
     }
-    console.log(userData);
+    const data = await fetch('/api/register', {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userData),
+    });
   };
   return (
     <>

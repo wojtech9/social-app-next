@@ -13,11 +13,18 @@ const Login = () => {
     password: '',
   });
 
-  const loginHandler = (): void => {
+  const loginHandler = async () => {
     if (userData.nickname === '' || userData.password === '') {
       return;
     }
-    console.log(userData);
+    const data = await fetch('/api/login', {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userData),
+    });
   };
 
   return (
