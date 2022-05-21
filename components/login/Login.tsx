@@ -1,7 +1,8 @@
 import classes from './Login.module.css';
 import { useState } from 'react';
+import Link from 'next/link';
 
-interface user {
+export interface user {
   nickname: string;
   password: string;
 }
@@ -52,7 +53,9 @@ const Login = () => {
             </button>
           </form>
           <p className={classes.registerInfo}>If You haven't got account:</p>
-          <p className={classes.registerButton}>Register</p>
+          <Link href='/register'>
+            <p className={classes.registerButton}>Register</p>
+          </Link>
         </div>
       </div>
     </section>

@@ -71,3 +71,6 @@
   text-transform: uppercase;
   letter-spacing: 1px;
 }
+.registerButton:hover {
+  cursor: pointer;
+}
