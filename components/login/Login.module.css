@@ -56,6 +56,9 @@
   background-color: #6d6ef6;
   border: none;
 }
+.form button:hover {
+  cursor: pointer;
+}
 .registerInfo {
   width: 100%;
   padding-top: 32px;

@@ -1,13 +1,23 @@
+import bcrypt from 'bcrypt';
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { user } from '../../components/login/Login';
 
-type Data = {
-  name: string;
-};
+// Register user api
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse
 ) {
-  console.log(req.body.nickname);
-  res.status(200).json({ name: 'John Doe' });
+  try {
+    const userData: user = req.body;
+
+    userData.password = await bcrypt.hash(userData.password, 10);
+    return res.status(200).json({
+      status: true,
+      payload: 'User successfully registered',
+    });
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({ status: false });
+  }
 }
