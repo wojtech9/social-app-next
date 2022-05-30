@@ -5,6 +5,4 @@ function MyApp({ Component, pageProps }: AppProps) {
   return <Component {...pageProps} />;
 }
 
-console.log('test');
-
 export default MyApp;

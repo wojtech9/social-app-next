@@ -5,9 +5,22 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 import Layout from '../components/layout/Layout';
 import Login from '../components/login/Login';
+import MainPage from '../components/contentPage/MainPage';
 
 const Home: NextPage = ({ cookie }: any) => {
-  return <Layout>{cookie === 'none' ? <Login /> : <h1>content</h1>}</Layout>;
+  return (
+    <>
+      {cookie === 'none' ? (
+        <Layout status={false}>
+          <Login />
+        </Layout>
+      ) : (
+        <Layout status={true}>
+          <MainPage />
+        </Layout>
+      )}
+    </>
+  );
 };
 
 export async function getServerSideProps({
