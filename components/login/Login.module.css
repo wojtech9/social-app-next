@@ -1,3 +1,5 @@
+/* Login box styles */
+
 .container {
   height: 94vh;
   display: flex;
@@ -83,6 +85,7 @@
   color: gray;
   font-weight: 400;
 }
+/* error login box*/
 
 .errorLogin {
   text-align: center;
@@ -92,9 +95,13 @@
   display: none;
 }
 
+/* display error box, when invalid and focused*/
+
 input.inputNickname:invalid[focused='true'] ~ .errorLogin {
   display: block;
 }
+
+/* error password box*/
 
 .errorPassword {
   text-align: center;
@@ -103,6 +110,8 @@ input.inputNickname:invalid[focused='true'] ~ .errorLogin {
   margin-bottom: 1em;
   display: none;
 }
+
+/* display error box, when invalid and focused*/
 
 input.inputPassword:invalid[focused='true'] ~ .errorPassword {
   display: block;

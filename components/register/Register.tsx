@@ -1,12 +1,20 @@
-import classes from '../login/Login.module.css';
-import { user } from '../login/Login';
 import { useState } from 'react';
 import Link from 'next/link';
+
+// styles
+import classes from '../login/Login.module.css';
+
+// components
 import InputFormer from '../InputFormer/InputFormer';
+
+// interfaces
+import user from '../../interfaces/User.interface';
 
 // component, which displays register subpage
 
 const Register = () => {
+  // validation and data states
+
   const [userData, setUserData] = useState<user>({
     nickname: '',
     password: '',
@@ -16,10 +24,12 @@ const Register = () => {
     password: 'false',
   });
 
+  // change input handler
   const changeHandler = (e: any) => {
     setUserData({ ...userData, [e.currentTarget.name]: e.currentTarget.value });
   };
 
+  // array which specifies type of inputs provided to InputFormer component
   const inputArray = [
     {
       key: 1,
@@ -56,11 +66,13 @@ const Register = () => {
     },
   ];
 
-  // register handler
+  // submit handler
 
   const registerHandler = async () => {
     let pattern1 = /^[A-Za-z0-9]{3,12}$/;
     let pattern2 = /^[A-Za-z0-9]{6,12}$/;
+
+    // data validating
     if (pattern1.test(userData.nickname) && pattern2.test(userData.password)) {
       const data = await fetch('/api/register', {
         method: 'POST',

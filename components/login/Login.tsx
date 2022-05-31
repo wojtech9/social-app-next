@@ -1,14 +1,17 @@
-import classes from './Login.module.css';
 import { useState } from 'react';
 import Link from 'next/link';
+
+// styles
+import classes from './Login.module.css';
+
+// components
 import InputFormer from '../InputFormer/InputFormer';
 
-export interface user {
-  nickname: string;
-  password: string;
-}
+// interfaces
+import user from '../../interfaces/User.interface';
 
 const Login = () => {
+  // form validation states
   const [userData, setUserData] = useState<user>({
     nickname: '',
     password: '',
@@ -17,10 +20,12 @@ const Login = () => {
     login: 'false',
     password: 'false',
   });
-
+  // change input handler
   const changeHandler = (e: any) => {
     setUserData({ ...userData, [e.currentTarget.name]: e.currentTarget.value });
   };
+
+  // array which specifies type of inputs provided to InputFormer component
 
   const inputArray = [
     {
@@ -58,9 +63,14 @@ const Login = () => {
     },
   ];
 
+  // submit handler
+
   const loginHandler = async () => {
     let pattern1 = /^[A-Za-z0-9]{3,12}$/;
     let pattern2 = /^[A-Za-z0-9]{6,12}$/;
+
+    // data validating
+
     if (pattern1.test(userData.nickname) && pattern2.test(userData.password)) {
       const data = await fetch('/api/login', {
         method: 'POST',

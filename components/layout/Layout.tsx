@@ -1,5 +1,9 @@
-import classes from './Layout.module.css';
 import Head from 'next/head';
+
+// styles
+import classes from './Layout.module.css';
+
+// Layout component
 
 export default function Layout({
   status,
@@ -16,7 +20,7 @@ export default function Layout({
       <main className={classes.mainContainer}>
         {status ? (
           <header className={classes.header}>
-            <h1 className={classes.logo}>MeetUp2</h1>
+            <h1 className={classes.logo}>MeetUp</h1>
           </header>
         ) : (
           <header className={classes.header}>

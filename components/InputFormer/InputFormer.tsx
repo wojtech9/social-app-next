@@ -1,5 +1,7 @@
 import classes from '../login/Login.module.css';
 
+// Inputs constructor
+
 const InputFormer = (props: any) => {
   return (
     <>
