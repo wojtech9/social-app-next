@@ -10,7 +10,7 @@ export default async function handler(
 ) {
   try {
     const userData: user = req.body;
-
+    console.log(userData);
     userData.password = await bcrypt.hash(userData.password, 10);
     return res.status(200).json({
       status: true,

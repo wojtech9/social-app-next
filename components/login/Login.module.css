@@ -16,8 +16,8 @@
 }
 .loginBox {
   background-color: white;
-  width: 470px;
-  height: 500px;
+  width: 520px;
+  height: 600px;
   border-radius: 16px;
   box-shadow: 0px 8px 16px 0px #30303029;
   border: 1px solid #e6e6f8;
@@ -76,4 +76,34 @@
 }
 .registerButton:hover {
   cursor: pointer;
+}
+
+.label {
+  margin: 0.5em 0em;
+  color: gray;
+  font-weight: 400;
+}
+
+.errorLogin {
+  text-align: center;
+  font-size: 0.9rem;
+  color: red;
+  margin-bottom: 1em;
+  display: none;
+}
+
+input.inputNickname:invalid[focused='true'] ~ .errorLogin {
+  display: block;
+}
+
+.errorPassword {
+  text-align: center;
+  font-size: 0.9rem;
+  color: red;
+  margin-bottom: 1em;
+  display: none;
+}
+
+input.inputPassword:invalid[focused='true'] ~ .errorPassword {
+  display: block;
 }
