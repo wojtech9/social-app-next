@@ -7,6 +7,9 @@ import classes from './Login.module.css';
 // components
 import InputFormer from '../InputFormer/InputFormer';
 
+// helpers
+import loginHandler from './loginHandler';
+
 // interfaces
 import user from '../../interfaces/User.interface';
 
@@ -63,26 +66,6 @@ const Login = () => {
     },
   ];
 
-  // submit handler
-
-  const loginHandler = async () => {
-    let pattern1 = /^[A-Za-z0-9]{3,12}$/;
-    let pattern2 = /^[A-Za-z0-9]{6,12}$/;
-
-    // data validating
-
-    if (pattern1.test(userData.nickname) && pattern2.test(userData.password)) {
-      const data = await fetch('/api/login', {
-        method: 'POST',
-        mode: 'cors',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(userData),
-      });
-    }
-  };
-
   return (
     <section className={classes.container}>
       <div className={classes.loginContainer}>
@@ -96,7 +79,7 @@ const Login = () => {
               type='submit'
               onClick={(e) => {
                 e.preventDefault();
-                loginHandler();
+                loginHandler(userData);
               }}
             >
               Login

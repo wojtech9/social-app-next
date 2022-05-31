@@ -10,6 +10,10 @@ import InputFormer from '../InputFormer/InputFormer';
 // interfaces
 import user from '../../interfaces/User.interface';
 
+// helpers
+
+import registerHandler from './registerHandler';
+
 // component, which displays register subpage
 
 const Register = () => {
@@ -66,25 +70,6 @@ const Register = () => {
     },
   ];
 
-  // submit handler
-
-  const registerHandler = async () => {
-    let pattern1 = /^[A-Za-z0-9]{3,12}$/;
-    let pattern2 = /^[A-Za-z0-9]{6,12}$/;
-
-    // data validating
-    if (pattern1.test(userData.nickname) && pattern2.test(userData.password)) {
-      const data = await fetch('/api/register', {
-        method: 'POST',
-        mode: 'cors',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(userData),
-      });
-    }
-  };
-
   return (
     <section className={classes.container}>
       <div className={classes.loginContainer}>
@@ -98,7 +83,7 @@ const Register = () => {
               type='submit'
               onClick={(e) => {
                 e.preventDefault();
-                registerHandler();
+                registerHandler(userData);
               }}
             >
               Register
