@@ -8,7 +8,7 @@ export default () => {
       <Head>
         <title>Register</title>
       </Head>
-      <Layout>
+      <Layout status={false}>
         <Register />
       </Layout>
     </>

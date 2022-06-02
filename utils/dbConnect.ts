@@ -1,4 +1,5 @@
 import { DataSource } from 'typeorm';
+import { Users } from '../models/Users';
 
 const dbConnection = new DataSource({
   type: 'postgres',
@@ -7,8 +8,8 @@ const dbConnection = new DataSource({
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
+  entities: [Users],
   synchronize: true,
-  entities: [],
 });
 
 export default dbConnection;

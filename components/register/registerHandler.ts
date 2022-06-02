@@ -15,6 +15,12 @@ const registerHandler = async (userData: user) => {
       },
       body: JSON.stringify(userData),
     });
+    const { status } = await data.json();
+    if (status) {
+      console.log('zarejstrowano');
+    } else {
+      console.log('nazwa zajeta');
+    }
   }
 };
 
