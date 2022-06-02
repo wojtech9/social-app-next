@@ -1,7 +1,11 @@
 import user from '../../interfaces/User.interface';
 
 // submit handler
-const registerHandler = async (userData: user, setRegister: any) => {
+const registerHandler = async (
+  userData: user,
+  setRegister: React.Dispatch<React.SetStateAction<boolean>>,
+  setUserData: React.Dispatch<React.SetStateAction<user>>
+) => {
   let pattern1 = /^[A-Za-z0-9]{3,12}$/;
   let pattern2 = /^[A-Za-z0-9]{6,12}$/;
 
@@ -19,7 +23,11 @@ const registerHandler = async (userData: user, setRegister: any) => {
     if (status) {
       setRegister(true);
     } else {
-      console.log('nazwa zajeta');
+      const element = document.querySelector<HTMLElement>('#usernameTaken');
+      element!.style.display = 'block';
+      setTimeout(() => {
+        element!.style.display = 'none';
+      }, 2000);
     }
   }
 };

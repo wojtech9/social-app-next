@@ -89,7 +89,7 @@ const Register = () => {
                   type='submit'
                   onClick={(e) => {
                     e.preventDefault();
-                    registerHandler(userData, setRegister);
+                    registerHandler(userData, setRegister, setUserData);
                   }}
                 >
                   Register

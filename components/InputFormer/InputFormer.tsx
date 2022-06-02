@@ -10,6 +10,12 @@ const InputFormer = (props: any) => {
         <>
           <input {...props} className={classes.inputNickname} />
           <span className={classes.errorLogin}>{props.error}</span>
+          <span
+            id='usernameTaken'
+            style={{ color: 'red', paddingBottom: '0.5em', display: 'none' }}
+          >
+            Username taken
+          </span>
         </>
       ) : (
         <>
