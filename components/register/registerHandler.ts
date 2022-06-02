@@ -1,7 +1,7 @@
 import user from '../../interfaces/User.interface';
 
 // submit handler
-const registerHandler = async (userData: user) => {
+const registerHandler = async (userData: user, setRegister: any) => {
   let pattern1 = /^[A-Za-z0-9]{3,12}$/;
   let pattern2 = /^[A-Za-z0-9]{6,12}$/;
 
@@ -17,7 +17,7 @@ const registerHandler = async (userData: user) => {
     });
     const { status } = await data.json();
     if (status) {
-      console.log('zarejstrowano');
+      setRegister(true);
     } else {
       console.log('nazwa zajeta');
     }

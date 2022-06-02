@@ -6,6 +6,7 @@ import classes from '../login/Login.module.css';
 
 // components
 import InputFormer from '../InputFormer/InputFormer';
+import SuccesRegistered from './SuccesRegistered';
 
 // interfaces
 import user from '../../interfaces/User.interface';
@@ -27,6 +28,7 @@ const Register = () => {
     login: 'false',
     password: 'false',
   });
+  const [register, setRegister] = useState<boolean>(false);
 
   // change input handler
   const changeHandler = (e: any) => {
@@ -75,24 +77,32 @@ const Register = () => {
       <div className={classes.loginContainer}>
         <div className={classes.loginBox}>
           <h1 className={classes.description}>Register</h1>
-          <form className={classes.form}>
-            {inputArray.map((value) => (
-              <InputFormer {...value} />
-            ))}
-            <button
-              type='submit'
-              onClick={(e) => {
-                e.preventDefault();
-                registerHandler(userData);
-              }}
-            >
-              Register
-            </button>
-          </form>
-          <p className={classes.registerInfo}>Creating an account is free</p>
-          <Link href='/'>
-            <p className={classes.registerButton}>Back</p>
-          </Link>
+          {register ? (
+            <SuccesRegistered />
+          ) : (
+            <>
+              <form className={classes.form}>
+                {inputArray.map((value) => (
+                  <InputFormer {...value} />
+                ))}
+                <button
+                  type='submit'
+                  onClick={(e) => {
+                    e.preventDefault();
+                    registerHandler(userData, setRegister);
+                  }}
+                >
+                  Register
+                </button>
+              </form>
+              <p className={classes.registerInfo}>
+                Creating an account is free
+              </p>
+              <Link href='/'>
+                <p className={classes.registerButton}>Back</p>
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </section>
