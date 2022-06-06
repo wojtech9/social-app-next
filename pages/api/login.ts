@@ -11,6 +11,8 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import dbConnection from '../../utils/dbConnect';
 import { Users } from '../../models/Users';
 
+// tokens
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -22,7 +24,7 @@ export default async function handler(
       await dbConnection.initialize();
     }
     const UsersRepository = dbConnection.getRepository(Users);
-    const checkData: user | null = await UsersRepository.findOneBy({
+    const checkData = await UsersRepository.findOneBy({
       nickname: userData.nickname,
     });
 
@@ -37,7 +39,21 @@ export default async function handler(
         throw new Error('invalid password');
       }
       // correct password
-      return res.status(200).json({ status: true });
+
+      // jwt authentication
+      const accessToken = jwt.sign(
+        { nickname: userData.nickname },
+        process.env.TOKEN as string,
+        {
+          expiresIn: '2h',
+        }
+      );
+      const refreshToken = jwt.sign(
+        { nickname: userData.nickname },
+        process.env.REFRESH_TOKEN as string
+      );
+      await UsersRepository.save({ id: checkData.id, refreshToken });
+      return res.status(200).json({ status: true, accessToken });
     }
     // user doesn't exist
     else {
