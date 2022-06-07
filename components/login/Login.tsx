@@ -23,6 +23,7 @@ const Login = () => {
     login: 'false',
     password: 'false',
   });
+  const [dataCorrect, setDataCorrect] = useState<boolean>(false);
   // change input handler
   const changeHandler = (e: any) => {
     setUserData({ ...userData, [e.currentTarget.name]: e.currentTarget.value });
@@ -79,11 +80,22 @@ const Login = () => {
               type='submit'
               onClick={(e) => {
                 e.preventDefault();
-                loginHandler(userData);
+                loginHandler(userData, setUserData, setDataCorrect);
               }}
             >
               Login
             </button>
+            {dataCorrect && (
+              <span
+                style={{
+                  color: 'red',
+                  textAlign: 'center',
+                  paddingTop: '1.5em',
+                }}
+              >
+                Invalid nickname or password
+              </span>
+            )}
           </form>
           <p className={classes.registerInfo}>If You haven't got account:</p>
           <Link href='/register'>
