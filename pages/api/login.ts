@@ -8,8 +8,8 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 // db imports
 
-import dbConnection from '../../utils/dbConnect';
-import { Users } from '../../models/Users';
+import dbConnection from '../../databaseUtils/dbConnect';
+import { Users } from '../../databaseUtils/models/Users';
 
 // tokens
 
@@ -53,13 +53,13 @@ export default async function handler(
         process.env.REFRESH_TOKEN as string
       );
       await UsersRepository.save({ id: checkData.id, refreshToken });
-      return res.status(200).json({ status: true, accessToken });
+      return res.status(200).json({ status: true, accessToken, refreshToken });
     }
     // user doesn't exist
     else {
       throw new Error("User doesnt' exists");
     }
   } catch (e) {
-    return res.status(500).json({ status: false });
+    return res.json({ status: false });
   }
 }

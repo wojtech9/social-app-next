@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 // styles
 import classes from './Login.module.css';
@@ -14,6 +15,7 @@ import loginHandler from './loginHandler';
 import user from '../../interfaces/User.interface';
 
 const Login = () => {
+  const router = useRouter();
   // form validation states
   const [userData, setUserData] = useState<user>({
     nickname: '',
@@ -78,9 +80,10 @@ const Login = () => {
             ))}
             <button
               type='submit'
-              onClick={(e) => {
+              onClick={async (e) => {
                 e.preventDefault();
-                loginHandler(userData, setUserData, setDataCorrect);
+                const isLogged = await loginHandler(userData, setDataCorrect);
+                if (isLogged) router.push('/');
               }}
             >
               Login

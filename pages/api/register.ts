@@ -3,8 +3,8 @@ import bcrypt from 'bcrypt';
 
 // db imports
 
-import dbConnection from '../../utils/dbConnect';
-import { Users } from '../../models/Users';
+import dbConnection from '../../databaseUtils/dbConnect';
+import { Users } from '../../databaseUtils/models/Users';
 
 // interfaces
 import user from '../../interfaces/User.interface';
