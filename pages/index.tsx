@@ -31,9 +31,13 @@ export async function getServerSideProps({
   res: NextApiResponse;
 }) {
   if (req.headers.cookie !== undefined) {
-    return {
-      props: { cookie: req.headers.cookie },
-    };
+    const response = await fetch('/api/authentication', {});
+    const data = await response.json();
+    if (data.status) {
+      return {
+        props: { cookie: req.headers.cookie },
+      };
+    }
   } else {
     return {
       props: { cookie: 'none' },
