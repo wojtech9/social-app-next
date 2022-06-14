@@ -7,16 +7,16 @@ import Layout from '../components/layout/Layout';
 import Login from '../components/login/Login';
 import MainPage from '../components/contentPage/MainPage';
 
-const Home: NextPage = ({ cookie }: any) => {
+const Home: NextPage = ({ loginStatus, data }: any) => {
   return (
     <>
-      {cookie === 'none' ? (
+      {loginStatus ? (
         <Layout status={false}>
-          <Login />
+          <MainPage />
         </Layout>
       ) : (
         <Layout status={true}>
-          <MainPage />
+          <Login />
         </Layout>
       )}
     </>
@@ -30,17 +30,30 @@ export async function getServerSideProps({
   req: NextApiRequest;
   res: NextApiResponse;
 }) {
+  // if cookies exist
+
   if (req.headers.cookie !== undefined) {
-    const response = await fetch('/api/authentication', {});
+    const response = await fetch('http://localhost:3000/api/authentication', {
+      method: 'GET',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: `Bearer ${'test'} ${'test2'}`,
+      },
+    });
     const data = await response.json();
     if (data.status) {
       return {
-        props: { cookie: req.headers.cookie },
+        props: { loginStatus: true, data: { nickname: data.payload.nickname } },
+      };
+    } else {
+      return {
+        props: { loginStatus: false, data: { nickname: 'none' } },
       };
     }
   } else {
     return {
-      props: { cookie: 'none' },
+      props: { loginStatus: false, data: { nickname: 'none' } },
     };
   }
 }
