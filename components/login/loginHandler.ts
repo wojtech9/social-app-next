@@ -31,7 +31,9 @@ const loginHandler = async (
       let expires = 'expires=' + d.toUTCString();
       document.cookie =
         'accesToken' + '=' + data.accessToken + ';' + expires + ';path=/';
-      document.cookie = 'refreshToken' + '=' + data.refreshToken + ';';
+      document.cookie =
+        'refreshToken' + '=' + data.refreshToken + ';' + ';path=/';
+      document.cookie = 'nickname' + '=' + data.nickname + ';' + ';path=/';
       status = true;
     }
   }

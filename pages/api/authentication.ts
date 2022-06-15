@@ -8,7 +8,7 @@ import { Users } from '../../databaseUtils/models/Users';
 const authentication = (req: NextApiRequest, res: NextApiResponse) => {
   const accesToken = req.headers['authorization']?.split(' ')[1];
   const refreshToken = req.headers['authorization']?.split(' ')[2];
-  const { nickname } = req.body;
+  const nickname = req.headers['authorization']?.split(' ')[3];
 
   if (!accesToken) return res.status(403).json({ status: false });
 
@@ -31,9 +31,11 @@ const authentication = (req: NextApiRequest, res: NextApiResponse) => {
             expiresIn: '2h',
           }
         );
+
         return res.status(200).json({ status: true, newAccessToken });
       }
     }
+
     return res.status(200).json({ status: true, result });
   });
 };
