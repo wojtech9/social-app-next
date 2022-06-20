@@ -54,8 +54,20 @@ export async function getServerSideProps({
     });
     const data = await response.json();
     if (data.status) {
+      let newCookie;
+      if (data.newAccessToken) {
+        const d = new Date();
+        d.setTime(d.getTime() + 2 * 60 * 60 * 1000);
+        let expires = 'expires=' + d.toUTCString();
+        newCookie =
+          'accesToken' + '=' + data.newAccessToken + ';' + expires + ';path=/';
+      }
       return {
-        props: { loginStatus: true, data: { nickname: data.result.nickname } },
+        props: {
+          loginStatus: true,
+          data: { nickname: data.result.nickname },
+          newCookie,
+        },
       };
     } else {
       return {

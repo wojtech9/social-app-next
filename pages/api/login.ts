@@ -45,7 +45,7 @@ export default async function handler(
         { nickname: userData.nickname },
         process.env.TOKEN as string,
         {
-          expiresIn: '2h',
+          expiresIn: '5s',
         }
       );
       const refreshToken = jwt.sign(
@@ -53,14 +53,12 @@ export default async function handler(
         process.env.REFRESH_TOKEN as string
       );
       await UsersRepository.save({ id: checkData.id, refreshToken });
-      return res
-        .status(200)
-        .json({
-          status: true,
-          accessToken,
-          refreshToken,
-          nickname: userData.nickname,
-        });
+      return res.status(200).json({
+        status: true,
+        accessToken,
+        refreshToken,
+        nickname: userData.nickname,
+      });
     }
     // user doesn't exist
     else {
