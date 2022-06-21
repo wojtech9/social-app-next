@@ -11,7 +11,10 @@ import MainPage from '../components/contentPage/MainPage';
 
 import getCookie from '../utils/getCookie';
 
-const Home: NextPage = ({ loginStatus, data }: any) => {
+const Home: NextPage = ({ loginStatus, data, newCookie }: any) => {
+  if (newCookie !== '') {
+    document.cookie = newCookie;
+  }
   return (
     <>
       {loginStatus ? (
@@ -54,7 +57,7 @@ export async function getServerSideProps({
     });
     const data = await response.json();
     if (data.status) {
-      let newCookie;
+      let newCookie = '';
       if (data.newAccessToken) {
         const d = new Date();
         d.setTime(d.getTime() + 2 * 60 * 60 * 1000);

@@ -32,7 +32,7 @@ const authentication = (req: NextApiRequest, res: NextApiResponse) => {
           }
         );
 
-        return res.status(200).json({ status: true, newAccessToken });
+        return res.status(200).json({ status: true, result, newAccessToken });
       }
     }
 
