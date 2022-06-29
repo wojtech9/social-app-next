@@ -11,7 +11,18 @@ export default async function handler(
   res: NextApiResponse
 ) {
   try {
+    if (!dbConnection.isInitialized) await dbConnection.initialize();
+    const usersRepository = dbConnection.getRepository(Users);
+    console.log(req.body);
+    const checkData = await usersRepository.findOneBy({
+      nickname: req.body,
+    });
+    if (checkData)
+      await usersRepository.save({ id: checkData.id, refreshToken: '' });
+
+    return res.status(200).json({ status: true });
   } catch (e) {
+    console.log(e);
     return { status: false };
   }
 }
