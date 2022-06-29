@@ -25,6 +25,15 @@ export default function Layout({
         ) : (
           <header className={classes.header}>
             <h1 className={classes.logo}>MeetUp</h1>
+            <nav className={classes.menu}>
+              <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+              </ul>
+            </nav>
           </header>
         )}
         {children}

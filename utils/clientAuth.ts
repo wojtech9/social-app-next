@@ -25,6 +25,7 @@ const clientAuth = async (req: NextApiRequest) => {
       },
     });
     const data = await response.json();
+
     if (data.status) {
       let newCookie = '';
       if (data.newAccessToken) {

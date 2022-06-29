@@ -13,6 +13,7 @@
   height: 6vh;
   display: flex;
   align-items: center;
+  flex-direction: space-between;
 }
 
 .logo {

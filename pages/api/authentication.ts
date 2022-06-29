@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import jwt from 'jsonwebtoken';
 import dbConnection from '../../databaseUtils/dbConnect';
 import { Users } from '../../databaseUtils/models/Users';
+import { Console } from 'console';
 
 // authentication
 
@@ -32,7 +33,9 @@ const authentication = (req: NextApiRequest, res: NextApiResponse) => {
           }
         );
 
-        return res.status(200).json({ status: true, result, newAccessToken });
+        return res
+          .status(200)
+          .json({ status: true, result: { nickname }, newAccessToken });
       }
     }
 

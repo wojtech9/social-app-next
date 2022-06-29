@@ -7,11 +7,14 @@ import Layout from '../components/layout/Layout';
 import Login from '../components/login/Login';
 import MainPage from '../components/contentPage/MainPage';
 import clientAuth from '../utils/clientAuth';
+import { useEffect } from 'react';
 
 const Home: NextPage = ({ loginStatus, data, newCookie }: any) => {
-  if (newCookie !== '') {
-    document.cookie = newCookie;
-  }
+  useEffect(() => {
+    // refresh session
+    if (newCookie) document.cookie = newCookie;
+  });
+
   return (
     <>
       {loginStatus ? (
