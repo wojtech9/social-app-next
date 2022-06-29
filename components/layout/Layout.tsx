@@ -8,6 +8,9 @@ import classes from './Layout.module.css';
 import { FiLogOut, FiSettings, FiUsers } from 'react-icons/fi';
 import { FaUserAlt, FaBell, FaEnvelope } from 'react-icons/fa';
 
+//utils
+import logoutHandler from '../../utils/logoutHandler';
+import { useRouter } from 'next/router';
 // Layout component
 
 export default function Layout({
@@ -17,6 +20,7 @@ export default function Layout({
   status: boolean;
   children: any;
 }) {
+  const router = useRouter();
   return (
     <>
       <Head>
@@ -42,7 +46,7 @@ export default function Layout({
                 <li>
                   <FiSettings />
                 </li>
-                <li>
+                <li onClick={() => logoutHandler(router)}>
                   <FiLogOut />
                 </li>
               </ul>
