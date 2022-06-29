@@ -2,7 +2,6 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import jwt from 'jsonwebtoken';
 import dbConnection from '../../databaseUtils/dbConnect';
 import { Users } from '../../databaseUtils/models/Users';
-import { Console } from 'console';
 
 // authentication
 

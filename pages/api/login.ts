@@ -45,7 +45,7 @@ export default async function handler(
         { nickname: userData.nickname },
         process.env.TOKEN as string,
         {
-          expiresIn: '5s',
+          expiresIn: '2h',
         }
       );
       const refreshToken = jwt.sign(
