@@ -3,6 +3,11 @@ import Head from 'next/head';
 // styles
 import classes from './Layout.module.css';
 
+//icons
+
+import { FiLogOut, FiSettings, FiUsers } from 'react-icons/fi';
+import { FaUserAlt, FaBell, FaEnvelope } from 'react-icons/fa';
+
 // Layout component
 
 export default function Layout({
@@ -20,20 +25,34 @@ export default function Layout({
       <main className={classes.mainContainer}>
         {status ? (
           <header className={classes.header}>
-            <h1 className={classes.logo}>MeetUp</h1>
+            <h1 className={classes.logo}>
+              <FiUsers /> MeetUp
+            </h1>
+            <nav className={classes.menu}>
+              <ul>
+                <li>
+                  <FaUserAlt />
+                </li>
+                <li>
+                  <FaBell />
+                </li>
+                <li>
+                  <FaEnvelope />
+                </li>
+                <li>
+                  <FiSettings />
+                </li>
+                <li>
+                  <FiLogOut />
+                </li>
+              </ul>
+            </nav>
           </header>
         ) : (
           <header className={classes.header}>
-            <h1 className={classes.logo}>MeetUp</h1>
-            <nav className={classes.menu}>
-              <ul>
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
-                <li>4</li>
-                <li>5</li>
-              </ul>
-            </nav>
+            <h1 className={classes.logo}>
+              <FiUsers /> MeetUp
+            </h1>
           </header>
         )}
         {children}

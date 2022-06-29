@@ -18,12 +18,12 @@ const Home: NextPage = ({ loginStatus, data, newCookie }: any) => {
   return (
     <>
       {loginStatus ? (
-        <Layout status={false}>
+        <Layout status={true}>
           <MainPage />
           <h1>{data.nickname}</h1>
         </Layout>
       ) : (
-        <Layout status={true}>
+        <Layout status={false}>
           <Login />
         </Layout>
       )}

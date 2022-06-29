@@ -12,14 +12,44 @@
   color: white;
   height: 6vh;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  flex-direction: space-between;
+  padding: 0em 2em;
 }
 
 .logo {
   font-size: 1.8rem;
-  padding: 0.5em 1.1em;
+  background-color: #4b4cd4;
+  width: 200px;
+  border-radius: 20px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
   letter-spacing: 5px;
+  padding: 0px 8px;
+}
+
+.menu ul {
+  display: flex;
+  list-style-type: none;
+}
+
+.menu ul li {
+  background-color: #4b4cd4;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0em 0.3em;
+}
+.menu ul li:hover {
+  cursor: pointer;
+  background-color: #ffbf46;
+  color: black;
 }
 
 /* typography */
