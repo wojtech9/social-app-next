@@ -6,7 +6,7 @@ import classes from './Layout.module.css';
 //icons
 
 import { FiLogOut, FiSettings, FiUsers } from 'react-icons/fi';
-import { FaUserAlt, FaBell, FaEnvelope } from 'react-icons/fa';
+import { FaUserAlt, FaBell, FaEnvelope, FaSearch } from 'react-icons/fa';
 
 //utils
 import logoutHandler from '../../utils/logoutHandler';
@@ -32,6 +32,12 @@ export default function Layout({
             <h1 className={classes.logo}>
               <FiUsers /> MeetUp
             </h1>
+            <section className={classes.searchBar}>
+              <form className={classes.searchForm}>
+                <input type='text' placeholder='Find your friends' />
+                <FaSearch />
+              </form>
+            </section>
             <nav className={classes.menu}>
               <ul>
                 <li>

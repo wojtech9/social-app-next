@@ -28,6 +28,11 @@
   justify-content: space-around;
   letter-spacing: 5px;
   padding: 0px 8px;
+  user-select: none;
+}
+
+.logo:hover {
+  cursor: pointer;
 }
 
 .menu ul {
@@ -50,6 +55,35 @@
   cursor: pointer;
   background-color: #ffbf46;
   color: black;
+}
+
+.searchBar {
+  height: 50px;
+  width: 700px;
+  background-color: #4b4cd4;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0em 1.5em;
+}
+
+.searchForm {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+.searchForm input {
+  width: 610px;
+  font-size: 1rem;
+  border: none;
+  background-color: #dee5e5;
+  outline: none;
+  border-radius: 5px;
+  padding: 0.3em 1em;
+  font-family: 'Public Sans', sans-serif;
 }
 
 /* typography */
