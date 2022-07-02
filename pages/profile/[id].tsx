@@ -1,14 +1,18 @@
 import { useRouter } from 'next/router';
 import { NextApiRequestQuery } from 'next/dist/server/api-utils';
+import dbConnection from '../../databaseUtils/dbConnect';
+import { Users } from '../../databaseUtils/models/Users';
 
 const Profile = ({ userData }: any) => {
   const router = useRouter();
-  console.log(userData);
+
   return <h1></h1>;
 };
 
 export async function getServerSideProps({ query }: NextApiRequestQuery) {
-  console.log(query);
+  if (!dbConnection.isInitialized) await dbConnection.initialize();
+  const UsersRepository = dbConnection.getRepository(Users);
+
   return {
     props: { userData: query },
   };
