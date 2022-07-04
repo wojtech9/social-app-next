@@ -6,9 +6,7 @@ import type { NextApiRequest } from 'next';
 
 import getCookie from '../utils/getCookie';
 
-const clientAuth = async (
-  req: NextApiRequest | { headers: { cookie: string } }
-) => {
+const clientAuth = async (req: NextApiRequest) => {
   // if cookies exist
 
   if (req.headers.cookie !== undefined) {

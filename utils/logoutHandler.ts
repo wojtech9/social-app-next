@@ -1,21 +1,18 @@
-// utils
-
-import clientAuth from './clientAuth';
-
 // function which handles user's logout
 
+// utils
+import getCookie from './getCookie';
+
 const logoutHandler = async (router: any) => {
-  const req = { headers: { cookie: document.cookie } };
-  const data = await clientAuth(req);
-  if (!data.props.loginStatus) router.push('/');
-  else {
+  const nickname = getCookie('nickname', document.cookie);
+  if (nickname) {
     const response = await fetch('http://localhost:3000/api/logout', {
       method: 'POST',
       mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data.props.data.nickname),
+      body: JSON.stringify(nickname),
     });
     const responseData = await response.json();
     if (responseData.status) {
