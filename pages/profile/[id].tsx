@@ -6,13 +6,20 @@ const Profile = ({ userData }: any) => {
   return <h1></h1>;
 };
 
-export async function getServerSideProps({ query }: NextApiRequestQuery) {
+export async function getServerSideProps({ params }: any) {
+  console.log(params);
   if (!dbConnection.isInitialized) await dbConnection.initialize();
   const UsersRepository = dbConnection.getRepository(Users);
-
-  return {
-    props: { userData: query },
-  };
+  const data = await UsersRepository.findOneBy({ id: params.id });
+  if (data?.nickname) {
+    return {
+      props: { userData: { nickname: data.nickname } },
+    };
+  } else {
+    return {
+      props: { userData: { nickname: 'Invalid profile ID' } },
+    };
+  }
 }
 
 export default Profile;
